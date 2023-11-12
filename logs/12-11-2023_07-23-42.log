@@ -1,0 +1,4 @@
+2023-11-12 19:23:54.954 [main] INFO  listeners.TestListeners - Starting testnegativeRegisterTest
+2023-11-12 19:23:54.961 [main] INFO  listeners.TestListeners - TEST SKIPPEDnegativeRegisterTest
+2023-11-12 19:23:54.974 [main] INFO  listeners.TestListeners - Starting testregisterTest
+2023-11-12 19:23:54.974 [main] INFO  listeners.TestListeners - TEST SKIPPEDregisterTest
