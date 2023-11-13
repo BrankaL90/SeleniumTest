@@ -1,50 +1,39 @@
+import DataProviders.DataProviders;
 import Pages.LoginPage;
 import Pages.RegisterPage;
+import listeners.TestListeners;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+@Listeners(TestListeners.class)
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     LoginPage login;
+    RegisterPage registerPage;
+
 
     @BeforeMethod
-    public void setupLogin()
-    {login = new LoginPage(driver);}
-
-    @Test
-
-    public void successfullLogin(){
-
-        login.loginUser("username@gmail.com", "password");
-
-
-
-
-    }
-
-    @Test
-
-    public void loginWithWrongPassword(){
-
-        login.loginUser("username@gmail.com", "password");
-        WebElement result = driver.findElement(By.cssSelector(".help-block"));
-        String actual = result.getText();
-        String expected = "Invalid email or password";
-
-
-        Assert.assertEquals(actual,expected);
-
-
-    }
-
-    @Test
-
-    public void loginWithWrongEmail(){
-
+    public void loginSetup() {
+        login = new LoginPage(driver);
+        registerPage = new RegisterPage(driver);
     }
 
 
+    @Test
+    public void loginUserTest() {
+        login.goToLoginForm()
+                .loginUser("customer@practicesoftwaretesting.com", "welcome01");
+        Assert.assertTrue(registerPage.isUserRegisteredAndLoggedIn());
+    }
+
+    @Test(dataProvider = "loginDataProvider", dataProviderClass = DataProviders.class)
+    public void invalidLogIn(String username, String password){
+        login.goToLoginForm()
+                .loginUser(username,password);
+        Assert.assertTrue(login.isErrorMessagePresent());
+    }
 }

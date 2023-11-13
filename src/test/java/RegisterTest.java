@@ -27,7 +27,7 @@ public class RegisterTest extends BaseTest{
 
         login.loginUser(registerPage.getUsername(),registerPage.getPassword());
 
-        Assert.assertTrue(registerPage.isUserRegistered());
+        Assert.assertTrue(registerPage.isUserRegisteredAndLoggedIn());
 
 
     }

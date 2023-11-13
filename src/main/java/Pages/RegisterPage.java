@@ -74,7 +74,7 @@ public class RegisterPage extends BasePage {
         return password;
     }
 
-    public boolean isUserRegistered(){
+    public boolean isUserRegisteredAndLoggedIn(){
 
         return matchesExpectedText(myAccountPageTitle, "My account") &&
                 matchesExpectedText(myAccountMenuProfile, "Profile");
